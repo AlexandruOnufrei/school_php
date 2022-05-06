@@ -39,8 +39,8 @@ class StudentsController extends Controller
     {   
         $students_img = $request->file('img')->store('students');
         // dd($students_img);
-       $test = Student::create(array_merge($request->only(['name', 'surname', 'email'],['img'=>$students_img])));
-       dd($test);
+        Student::create(array_merge($request->only(['name', 'surname', 'email']),['img'=>$students_img]));
+    //    dd($test);
        return redirect()->route('students.index');
     }
 
@@ -74,8 +74,8 @@ class StudentsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(StudentRequest $request, Student $student)
-    {
-        $student->update($request->only(['name', 'surname', 'email']));
+    {   
+        $student->update($request->only(['name', 'surname', 'email', 'img']));
         return redirect()->route('students.index');
     }
 
